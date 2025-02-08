@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "esbuild": "^0.19.11",
+    "uhtml": "^4.4.6"
+  }
+}
