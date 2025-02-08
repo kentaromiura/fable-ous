@@ -6,7 +6,6 @@ open Browser
 open System
 open System.Text.RegularExpressions
 
-// For more information see https://aka.ms/fsharp-console-apps
 type HyperTemplate = Object
 
 
@@ -15,7 +14,7 @@ let render(el:HTMLElement, tpl:HyperTemplate): unit = jsNative
 
 [<Import("html", "uhtml")>]
 let html(strs: string[], [<ParamArray>] args: obj[]): HyperTemplate = jsNative
-//import { html, svg } from 'uhtml';
+
 let getJsTemplate (s: FormattableString) =
     let str = s.Format
     let mutable prevIndex = 0
@@ -29,15 +28,13 @@ let getJsTemplate (s: FormattableString) =
         else
             str.Substring(prevIndex)), s.GetArguments()
 
-
 let onClicked _ =
     console.log(
         "clicked"
     )
 let a body = 
     let strs, args = getJsTemplate $"""
-    <div>
-        
+    <div>       
         <div onclick={onClicked}>{body}</div>
     </div>
     """
@@ -48,8 +45,7 @@ let res _ = a "Hello"
 //[<EntryPoint>]
 let main _ = 
     render (document.body,res)
-    //console.log res
-    //0
+
     
 match Browser.Dom.document.readyState <> "loading" with
     | true -> main()
